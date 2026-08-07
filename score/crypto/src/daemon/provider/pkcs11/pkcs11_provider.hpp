@@ -95,6 +95,9 @@ class Pkcs11Provider final : public IProvider, public std::enable_shared_from_th
     /// Return the PKCS#11 key factory.
     [[nodiscard]] std::shared_ptr<key_management::IKeyFactory> GetKeyFactory() override;
 
+    // --- SHM capability ---
+    [[nodiscard]] std::shared_ptr<data_plane::IShmFactory> GetShmFactory() override;
+
     /// @brief Inject the key management service for key DataNode lifecycle management.
     void SetKeyManagementService(std::shared_ptr<key_management::KeyManagementService> service) override
     {
@@ -194,6 +197,7 @@ class Pkcs11Provider final : public IProvider, public std::enable_shared_from_th
     /// @brief Key factory: GenerateKey and ImportKey implementation.
     std::shared_ptr<Pkcs11KeyFactory> m_key_factory;
     key_management::KeyManagementService::Sptr m_keyManagementService;
+    std::shared_ptr<data_plane::IShmFactory> m_shm_factory;
 };
 
 }  // namespace score::crypto::daemon::provider::pkcs11

@@ -47,6 +47,9 @@ class OpenSSL final : public ::score::crypto::daemon::provider::score_provider::
         const key_management::KeySlotConfig& config) override;
     void SetKeyManagementService(std::shared_ptr<key_management::KeyManagementService> service) override;
 
+    // --- SHM capability ---
+    std::shared_ptr<data_plane::IShmFactory> GetShmFactory() override;
+
   private:
     /// Performs OpenSSL-specific startup: calls OPENSSL_init_crypto and creates the key factory.
     [[nodiscard]] bool InitialiseBackend(const ProviderInitContext& ctx) override;
@@ -57,6 +60,7 @@ class OpenSSL final : public ::score::crypto::daemon::provider::score_provider::
 
     std::shared_ptr<key_management::IKeyFactory> m_factory;
     std::shared_ptr<key_management::KeyManagementService> m_keyManagementService;
+    std::shared_ptr<data_plane::IShmFactory> m_shm_factory;
 };
 
 }  // namespace score::crypto::daemon::provider::score_provider::openssl
