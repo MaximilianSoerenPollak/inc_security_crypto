@@ -36,7 +36,7 @@ repos:
       - id: generate-compile-commands
         name: bazel-compile-commands (for clang-tidy)
         entry: bazel-compile-commands
-        language: systm
+        language: system
         files: \.(c|cpp|h|hpp)$
         pass_filenames: false
   - repo: https://github.com/pocc/pre-commit-hooks
