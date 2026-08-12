@@ -54,5 +54,7 @@ repos:
     rev: 7694bf823421b5542cd2f45239b8bdf205dbface
     hooks:
       - id: copyright
+        args:
+        - --exclusion-file=copyright_exclusions.txt
 
 
